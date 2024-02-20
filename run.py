@@ -10,7 +10,7 @@ if __name__ == '__main__':
         app.run(debug=True)
         socketio.run(app)
     except ImportError:
-        print("Check the text document I should have sent regarding the libraries that need to be installed")
+        print("Check the text document regarding the libraries that need to be installed")
     except Exception as e:
         print(f"Error: {e}")
     finally:
