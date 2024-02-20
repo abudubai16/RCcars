@@ -21,8 +21,9 @@ def handle_player_inputs(data):
 
 @socketio.on("car_inputs")
 def handle_car_inputs(image, name):
-    from .utils import save_frame
-    save_frame(image, name)
+    print(image, name)
+    data = [current_user.throttle, current_user.steering]
+    emit(data)
 
 
 @socketio.on("game_state")
@@ -48,13 +49,9 @@ def change_game(controls):
 
 
 @socketio.on('get_db')
-def send_db():
-    print("THAT")
-    from . import db
-    print(db)
-    socketio.emit("receive_db", db)
-
-
-@socketio.on("get_db")
-def send_db():
-    pass
+def send_db(status):
+    if status == 400:
+        data = "Hello"
+        socketio.emit("receive_db", data)
+    else:
+        socketio.emit("recieve_db", "Error")

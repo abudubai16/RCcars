@@ -37,15 +37,6 @@ def is_admin(current_user):
         return False
 
 
-def save_frame(frame, name="UnknownSource"):
-    picture_name = f"{name}.png"
-    picture_path = os.path.join(current_app.root_path, 'pictures', picture_name)
-
-    os.remove(picture_path)
-
-    i = Image.open(frame)
-    i.save(picture_path)
-
 
 
 

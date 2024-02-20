@@ -12,14 +12,13 @@ let admin_controls = {
 
 // Sockets
 socket.on("admin_controls", function(){
-    console.log(admin_controls.reset, admin_controls.start)
+    console.log("Input Updated!")
 });
 
-socket.on("receive_db", function(data){
-    console.log("Hello")
-    console.log(data)
+socket.on("receive_db", function(inputData){
+    console.log(inputData)
+    updateTable(inputData);
 })
-
 
 // Functions
 function update_elements(){
@@ -49,7 +48,6 @@ function update_elements(){
 function ClickedRestart(){
     admin_controls.start = !admin_controls.start
     
-    socket.emit("get_db")
     update_elements()
 
     socket.emit("change_game", admin_controls)
@@ -62,3 +60,16 @@ function ClickedReset(){
 
     socket.emit("game_state", admin_controls)
 }
+
+function Update_db(){
+    socket.emit("get_db", 400)
+}
+
+function updateTable(inputData){
+    console.log("HELLO")
+}
+
+
+setTimeout(function () {
+    socket.emit("get_db", 400)
+}, 1000);
